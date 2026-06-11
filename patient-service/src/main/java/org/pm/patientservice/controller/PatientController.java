@@ -1,16 +1,12 @@
 package org.pm.patientservice.controller;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import org.pm.patientservice.dto.PatientRequestDTO;
 import org.pm.patientservice.dto.PatientResponseDTO;
 import org.pm.patientservice.dto.validators.CreatePatientValidationGroup;
-import org.pm.patientservice.model.Patient;
 import org.pm.patientservice.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
-@Tag(name = "Patient", description = "API for managing patients")
+@Tag(name = "Patient", description = "API for managing patients") // json for the generator api, from http://localhost:4000/v3/api-docs
 public class PatientController {
     private final PatientService patientService;
 
