@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package="billing"; // the code generation all under a package named billing
+
+service BillingService {
+  // rpc method - the protocol we are using
+  rpc CreateBillingAccount (BillingRequest) returns (BillingResponse);
+}
+
+// describe what our BillingRequest looks like
+message BillingRequest {
+  // numbers need to be unique
+  string patientId = 1;
+  string name = 2;
+  string email = 3;
+
+}
+
+message BillingResponse {
+  // numbers need to be unique
+  string accountId = 1;
+  string status = 2;
+}
