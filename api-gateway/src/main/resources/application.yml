@@ -1,0 +1,31 @@
+server:
+  port: 4004
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+          ## FOR CRUD operations endpoint
+              ## REST CLIENT -> http://localhost:4004/api/patients -> goes to api gateway
+              ##-> path matches the predicates -> routes are applied
+              ## API GATEWAY -> http://patient-service:4000/patients (it strips the api)
+              ## PATIENT SERVICE (SPRING BOOT APP) -> /patients -> Patients Array_
+            - id : patient-service-route
+              uri: http://patient-service:4000
+              predicates:
+                - Path=/api/patients/**
+              filters:
+                - StripPrefix=1
+          ## API docs endpoint
+            - id: api-docs-patient-route
+              uri: http://patient-service:4000
+              predicates:
+                - Path=/api-docs/patients
+              filters:
+                - RewritePath=/api-docs/patients,/v3/api-docs
+
+              ## REST-CLIENT -> http://localhost:4004/api-docs/patients
+              ## API-GATEWAY -> http://patient-service:4000/v3/api-docs
+
