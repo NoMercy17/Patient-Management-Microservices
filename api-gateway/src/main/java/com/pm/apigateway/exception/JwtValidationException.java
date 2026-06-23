@@ -1,0 +1,22 @@
+package com.pm.apigateway.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.ServerWebInputException;
+import reactor.core.publisher.Mono;
+
+@RestControllerAdvice
+public class JwtValidationException {
+
+    // create custom exception so the api sends 401 and not 500 when we pass a random token 
+    @ExceptionHandler(WebClientResponseException.Unauthorized.class)
+    public Mono<Void> handleUnauthorizedException(ServerWebExchange exchange){
+        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+        return exchange.getResponse().setComplete();
+    }
+}

@@ -7,7 +7,16 @@ spring:
       server:
         webflux:
           routes:
-          ## FOR CRUD operations endpoint
+            ## http://localhost:4004/auth/login -> http://auth-service:4005/login
+            - id: auth-service-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
+
+
+              ## FOR CRUD operations endpoint
               ## REST CLIENT -> http://localhost:4004/api/patients -> goes to api gateway
               ##-> path matches the predicates -> routes are applied
               ## API GATEWAY -> http://patient-service:4000/patients (it strips the api)
@@ -18,6 +27,7 @@ spring:
                 - Path=/api/patients/**
               filters:
                 - StripPrefix=1
+                - JwtValidation # to validate only the patient-service endpoints
           ## API docs endpoint
             - id: api-docs-patient-route
               uri: http://patient-service:4000
