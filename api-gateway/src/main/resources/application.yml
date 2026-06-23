@@ -15,7 +15,6 @@ spring:
               filters:
                 - StripPrefix=1
 
-
               ## FOR CRUD operations endpoint
               ## REST CLIENT -> http://localhost:4004/api/patients -> goes to api gateway
               ##-> path matches the predicates -> routes are applied
@@ -28,7 +27,10 @@ spring:
               filters:
                 - StripPrefix=1
                 - JwtValidation # to validate only the patient-service endpoints
-          ## API docs endpoint
+
+              ## API docs endpoint
+              ## REST-CLIENT -> http://localhost:4004/api-docs/patients
+              ## API-GATEWAY -> http://patient-service:4000/v3/api-docs
             - id: api-docs-patient-route
               uri: http://patient-service:4000
               predicates:
@@ -36,6 +38,9 @@ spring:
               filters:
                 - RewritePath=/api-docs/patients,/v3/api-docs
 
-              ## REST-CLIENT -> http://localhost:4004/api-docs/patients
-              ## API-GATEWAY -> http://patient-service:4000/v3/api-docs
-
+            - id: api-docs-auth-route
+              uri: http://auth-service:4005
+              predicates:
+                - Path=/api-docs/auth
+              filters:
+                - RewritePath=/api-docs/auth,/v3/api-docs
