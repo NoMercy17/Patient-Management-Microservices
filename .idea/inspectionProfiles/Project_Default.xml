@@ -19,6 +19,8 @@
           <option value="analytics-service" />
           <option value="analytics-service" />
           <option value="analytics-service" />
+          <option value="infrastructure" />
+          <option value="infrastructure" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -36,10 +38,14 @@
           <option value="org.springframework:spring-beans:6.1.1" />
           <option value="org.apache.kafka:kafka-clients:3.6.0" />
           <option value="org.springframework.boot:spring-boot:3.2.0" />
+          <option value="io.netty:netty-codec-http:4.1.115.Final" />
+          <option value="io.netty:netty-common:4.1.115.Final" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
