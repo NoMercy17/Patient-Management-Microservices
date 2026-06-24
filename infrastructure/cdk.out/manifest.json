@@ -149,6 +149,78 @@
             "type": "aws:cdk:logicalId",
             "data": "PatientManagementVPCVPCGW1FFEFAEB"
           }
+        ],
+        "/localstack/AuthServiceDB/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceDBSubnetGroupCFE5A552"
+          }
+        ],
+        "/localstack/AuthServiceDB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceDBSecurityGroupBE6D28EB"
+          }
+        ],
+        "/localstack/AuthServiceDB/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "localstackAuthServiceDBSecretE93C53FD3fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/localstack/AuthServiceDB/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceDBSecretAttachmentF30406A9"
+          }
+        ],
+        "/localstack/AuthServiceDB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceDBC6B688BA"
+          }
+        ],
+        "/localstack/PatientServiceDb/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDbSubnetGroup1312FFB6"
+          }
+        ],
+        "/localstack/PatientServiceDb/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDbSecurityGroupCEB42CD9"
+          }
+        ],
+        "/localstack/PatientServiceDb/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "localstackPatientServiceDbSecretE29F42EC3fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/localstack/PatientServiceDb/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDbSecretAttachment54460532"
+          }
+        ],
+        "/localstack/PatientServiceDb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDb4C436D31"
+          }
+        ],
+        "/localstack/AuthServiceDBHealthCheck": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthServiceDBHealthCheck"
+          }
+        ],
+        "/localstack/PatientServiceDBHealthCheck": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PatientServiceDBHealthCheck"
+          }
         ]
       },
       "displayName": "localstack"
