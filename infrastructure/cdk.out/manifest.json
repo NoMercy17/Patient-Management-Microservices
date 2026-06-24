@@ -221,6 +221,12 @@
             "type": "aws:cdk:logicalId",
             "data": "PatientServiceDBHealthCheck"
           }
+        ],
+        "/localstack/MSKCluster": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MSKCluster"
+          }
         ]
       },
       "displayName": "localstack"

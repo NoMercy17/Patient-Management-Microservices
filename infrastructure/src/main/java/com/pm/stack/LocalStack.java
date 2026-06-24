@@ -2,12 +2,13 @@ package com.pm.stack;
 
 import com.amazonaws.services.route53.model.VPC;
 import software.amazon.awscdk.*;
-import software.amazon.awscdk.services.ec2.InstanceClass;
-import software.amazon.awscdk.services.ec2.InstanceSize;
+import software.amazon.awscdk.services.ec2.*;
 import software.amazon.awscdk.services.ec2.InstanceType;
-import software.amazon.awscdk.services.ec2.Vpc;
+import software.amazon.awscdk.services.msk.CfnCluster;
 import software.amazon.awscdk.services.rds.*;
 import software.amazon.awscdk.services.route53.CfnHealthCheck;
+
+import java.util.stream.Collectors;
 
 public class LocalStack extends Stack {
 
@@ -22,6 +23,8 @@ public class LocalStack extends Stack {
 
         CfnHealthCheck authDbHealthCheck = createDbHealthCheck(authServiceDb, "AuthServiceDBHealthCheck");
         CfnHealthCheck patientDbHealthCheck = createDbHealthCheck(patientServiceDb, "PatientServiceDBHealthCheck");
+
+        CfnCluster mskCluster = createMSKCluster();
     }
 
     private Vpc createVpc(){
@@ -60,6 +63,20 @@ public class LocalStack extends Stack {
                         .requestInterval(20) // check at every 20 sec
                         .failureThreshold(3) // try 3 times before reports failure
                         .build())
+                .build();
+    }
+
+    // managed (by Aws) kafka server
+    private CfnCluster createMSKCluster(){
+        return CfnCluster.Builder.create(this, "MSKCluster")
+                .clusterName("kafka-cluster")
+                .kafkaVersion("2.8.0")
+                .numberOfBrokerNodes(1)
+                .brokerNodeGroupInfo(CfnCluster.BrokerNodeGroupInfoProperty.builder()
+                        .instanceType("kafka.m5.xlarge")
+                        .clientSubnets(vpc.getPrivateSubnets().stream().map(
+                                ISubnet::getSubnetId).collect(Collectors.toList()))
+                                .brokerAzDistribution("DEFAULT").build())// how broker get distributed
                 .build();
     }
 
