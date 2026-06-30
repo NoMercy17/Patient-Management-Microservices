@@ -71,8 +71,8 @@ public class LocalStack extends Stack {
 
     private Vpc createVpc(){
         return Vpc.Builder
-                .create(this, "PatientManagementVPC")
-                .vpcName("PatientManagementVPC")
+                .create(this, "PatientManagementVP")
+                .vpcName("PatientManagementVP")
                 .maxAzs(2) // vpc will be available in 2 different zones throughout the world
                 .build();
     }
