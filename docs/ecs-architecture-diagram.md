@@ -1,4 +1,3 @@
-Looking carefully at the image, here's the corrected code:
 
 ```mermaid
 flowchart LR
